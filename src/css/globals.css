@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "./typography";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "./reset.css";
+@import "./input/checkbox.css";
+@import "./input/input.css";
+@import "./button/default.css";
+@import "./button/rounded.css";
+@import "./button/outline.css";
+@import "./button/borderless.css";
+@import "./button/ghost.css";
+@import "./button/size.css";
+@import "./button/icon.css";

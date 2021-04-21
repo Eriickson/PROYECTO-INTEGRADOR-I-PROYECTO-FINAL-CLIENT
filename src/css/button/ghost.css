@@ -1,0 +1,39 @@
+.btn.ghost.pri {
+  @apply border-pri-500 text-pri-500 bg-pri-100 hover:bg-pri-500;
+}
+
+.btn.ghost.danger {
+  @apply border-danger-500 text-danger-500 bg-danger-100 hover:bg-danger-500;
+}
+
+.btn.ghost.sec {
+  @apply border-sec-500 text-sec-500 bg-sec-100 hover:bg-sec-500;
+}
+
+.btn.ghost.ter {
+  @apply border-ter-500 text-ter-500 bg-ter-100 hover:bg-ter-500;
+}
+
+.btn.ghost.info {
+  @apply border-info-500 text-info-500 bg-info-100 hover:bg-info-500;
+}
+
+.btn.ghost.success {
+  @apply border-success-500 text-success-500 bg-success-100 hover:bg-success-500;
+}
+
+.btn.ghost.warning {
+  @apply border-warning-500 text-warning-500 bg-warning-100 hover:bg-warning-500;
+}
+
+.btn.ghost.neutral {
+  @apply border-neutral-500 text-neutral-500 bg-neutral-100 hover:bg-neutral-500;
+}
+
+.btn.ghost.brand {
+  @apply border-brand-500 text-brand-500 bg-brand-100 hover:bg-brand-500;
+}
+
+.btn.ghost {
+  @apply text-gray-600 bg-gray-100 border-gray-600 hover:bg-gray-600 hover:text-white active:opacity-75;
+}

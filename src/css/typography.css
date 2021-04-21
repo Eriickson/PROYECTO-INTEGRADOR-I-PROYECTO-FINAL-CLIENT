@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+@font-face {
+  font-family: SFProDisplay;
+  src: url("../assets/fonts/SFPro/SFProDisplay-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: SFProDisplay;
+  src: url("../assets/fonts/SFPro/SFProDisplay-Medium.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: SFProDisplay;
+  src: url("../assets/fonts/SFPro/SFProDisplay-Semibold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: SFProDisplay;
+  src: url("../assets/fonts/SFPro/SFProDisplay-Bold.ttf");
+  font-weight: 700;
+}

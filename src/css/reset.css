@@ -1,0 +1,17 @@
+* {
+  @apply outline-none !important;
+  @apply leading-5;
+  font-family: Sans-Serif;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+  font-family: "SFProDisplay" !important;
+}
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="text"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

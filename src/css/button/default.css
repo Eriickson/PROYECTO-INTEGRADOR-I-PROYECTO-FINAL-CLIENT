@@ -1,0 +1,34 @@
+.btn.pri {
+  @apply bg-pri-500 border-pri-500 ring-pri-300;
+}
+.btn.ter {
+  @apply bg-ter-500 border-ter-500 ring-ter-300;
+}
+
+.btn.success {
+  @apply bg-success-500 border-success-500 ring-success-300;
+}
+
+.btn.warning {
+  @apply bg-warning-500 border-warning-500 ring-warning-300;
+}
+
+.btn.danger {
+  @apply bg-danger-500 border-danger-500 ring-danger-300;
+}
+.btn.info {
+  @apply bg-info-500 border-info-500 ring-info-300;
+}
+
+.btn.neutral {
+  @apply bg-neutral-500 border-neutral-500 ring-neutral-300;
+}
+.btn.brand {
+  @apply bg-brand-500 border-brand-500 ring-brand-300;
+}
+.btn {
+  @apply px-3 py-2 text-sm font-medium text-white duration-150 bg-gray-600 border border-gray-600 rounded-none hover:opacity-80 active:opacity-100 focus:opacity-90 focus:ring focus:ring-opacity-80;
+}
+.btn:disabled {
+  @apply opacity-40;
+}

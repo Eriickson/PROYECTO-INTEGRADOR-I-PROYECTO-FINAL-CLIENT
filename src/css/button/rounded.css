@@ -1,0 +1,3 @@
+.btn.rounded {
+  @apply rounded-full;
+}

@@ -1,0 +1,38 @@
+.btn.borderless.pri {
+  @apply text-pri-500 hover:border-pri-500;
+}
+
+.btn.borderless.danger {
+  @apply text-danger-500 hover:border-danger-500;
+}
+
+.btn.borderless.sec {
+  @apply text-sec-500 hover:border-sec-500;
+}
+
+.btn.borderless.ter {
+  @apply text-ter-500 hover:border-ter-500;
+}
+
+.btn.borderless.warning {
+  @apply text-warning-500 hover:border-warning-500;
+}
+
+.btn.borderless.info {
+  @apply text-info-500 hover:border-info-500;
+}
+
+.btn.borderless.success {
+  @apply text-success-500 hover:border-success-500;
+}
+
+.btn.borderless.brand {
+  @apply text-brand-500 hover:border-brand-500;
+}
+
+.btn.borderless.neutral {
+  @apply text-neutral-500 hover:border-neutral-500;
+}
+.btn.borderless {
+  @apply text-gray-600 bg-white border-transparent active:opacity-40 hover:border-gray-600;
+}

@@ -1,0 +1,46 @@
+input {
+  max-height: 40px;
+}
+.form-control {
+  @apply px-3 py-2 leading-6 duration-150 border border-gray-300 rounded-none shadow-sm focus:border-pri-500 focus:ring-1 focus:ring-pri-500 focus:shadow;
+}
+
+.form-control.gray {
+  @apply px-3 py-2 leading-6 duration-150 border border-black rounded-none shadow-sm border-opacity-70 focus:border-gray-500 focus:ring-1 focus:ring-gray-500 focus:shadow;
+}
+
+.form-control.pri {
+  @apply border-pri-500 text-pri-500 focus:bg-pri-50 focus:border-pri-500 focus:ring-pri-500 focus:text-pri-600 focus:placeholder-pri-300;
+}
+
+.form-control.success {
+  @apply border-success-500 text-success-500 focus:bg-success-50 focus:border-success-500 focus:ring-success-500 focus:text-success-600 focus:placeholder-success-300;
+}
+
+.form-control.danger {
+  @apply border-danger-500 text-danger-500 focus:bg-danger-50 focus:border-danger-500 focus:ring-danger-500 focus:text-danger-600 bg-danger-50 placeholder-danger-300;
+}
+
+.form-control.warning {
+  @apply border-warning-500 text-warning-500 focus:bg-warning-50 focus:border-warning-500 focus:ring-warning-500 focus:text-warning-600 focus:placeholder-warning-300;
+}
+
+.form-control.info {
+  @apply border-info-500 text-info-500 focus:bg-info-50 focus:border-info-500 focus:ring-info-500 focus:text-info-600 focus:placeholder-info-300;
+}
+
+.form-control.neutral {
+  @apply border-neutral-500 text-neutral-500 focus:bg-neutral-50 focus:border-neutral-500 focus:ring-neutral-500 focus:text-neutral-600 focus:placeholder-neutral-300;
+}
+
+.form-control.brand {
+  @apply border-brand-500 text-brand-500 focus:bg-brand-50 focus:border-brand-500 focus:ring-brand-500 focus:text-brand-600 focus:placeholder-brand-300;
+}
+
+.form-control-2 {
+  @apply w-full px-2 py-2 text-sm duration-200 border border-gray-400 rounded focus:shadow-pri-outline focus:border-pri-500 focus:text-pri-500;
+}
+
+option {
+  @apply text-black bg-white;
+}

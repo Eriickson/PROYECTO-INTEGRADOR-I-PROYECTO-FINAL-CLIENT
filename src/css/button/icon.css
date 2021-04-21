@@ -1,0 +1,27 @@
+.btn.icon {
+  @apply p-2;
+}
+.btn.icon svg {
+  @apply w-5 h-5;
+}
+.btn.icon.sm {
+  @apply p-1;
+}
+.btn.icon.sm svg {
+  @apply w-4 h-4;
+}
+.btn.icon.lg {
+  @apply p-3;
+}
+.btn.icon.left {
+  @apply flex items-center justify-center pl-2 pr-4;
+}
+.btn.icon.right {
+  @apply flex items-center justify-center pl-4 pr-1;
+}
+.btn.icon.right svg {
+  @apply ml-1;
+}
+.btn.icon.left svg {
+  @apply mr-1;
+}

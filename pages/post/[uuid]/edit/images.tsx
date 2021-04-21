@@ -1,0 +1,17 @@
+import React from "react";
+
+// NextJS
+import { NextPage } from "next";
+
+// My Components
+import { EditPostDataTemplate } from "@/templates";
+
+const EditImageDataPage: NextPage = () => {
+  return (
+    <div>
+      <EditPostDataTemplate />
+    </div>
+  );
+};
+
+export default EditImageDataPage;

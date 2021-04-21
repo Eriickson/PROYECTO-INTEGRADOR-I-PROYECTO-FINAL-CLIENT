@@ -1,0 +1,35 @@
+.btn.outline.pri {
+  @apply border-pri-500 text-pri-500 hover:bg-pri-500;
+}
+
+.btn.outline.danger {
+  @apply border-danger-500 text-danger-500 hover:bg-danger-500;
+}
+
+.btn.outline.sec {
+  @apply border-sec-500 text-sec-500 hover:bg-sec-500;
+}
+
+.btn.outline.ter {
+  @apply border-ter-500 text-ter-500 hover:bg-ter-500;
+}
+
+.btn.outline.neutral {
+  @apply border-neutral-500 text-neutral-500 hover:bg-neutral-500;
+}
+
+.btn.outline.info {
+  @apply border-info-500 text-info-500 hover:bg-info-500;
+}
+
+.btn.outline.success {
+  @apply border-success-500 text-success-500 hover:bg-success-500;
+}
+
+.btn.outline.brand {
+  @apply border-brand-500 text-brand-500 hover:bg-brand-500;
+}
+
+.btn.outline {
+  @apply text-gray-600 bg-white border border-gray-600 hover:text-white hover:bg-gray-600;
+}

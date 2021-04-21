@@ -1,0 +1,6 @@
+.btn.sm {
+  @apply px-2 py-1 text-xs;
+}
+.btn.lg {
+  @apply px-5 py-3 text-base;
+}
