@@ -38,7 +38,11 @@ const schema = yup.object().shape({
 });
 
 export const FormSignin: React.FC<FromSigninProps> = ({ onSubmit }) => {
-  const { handleSubmit, register, errors } = useForm({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -58,9 +62,8 @@ export const FormSignin: React.FC<FromSigninProps> = ({ onSubmit }) => {
           <input
             id="identifier"
             className={`w-full form-control ${errors.identifier && "danger"}`}
-            name="identifier"
             placeholder="Correo o nombre de usuario"
-            ref={register}
+            {...register("identifier")}
           />
           <ErrorComponent name="identifier" error={errors} />
         </div>
@@ -83,11 +86,10 @@ export const FormSignin: React.FC<FromSigninProps> = ({ onSubmit }) => {
           <input
             id="password"
             className={`w-full form-control ${errors.password && "danger"}`}
-            name="password"
             type={showPassword ? "text" : "password"}
             placeholder="Contraseña"
             autoComplete="on"
-            ref={register}
+            {...register("password")}
           />
           <ErrorComponent name="password" error={errors} />
         </div>

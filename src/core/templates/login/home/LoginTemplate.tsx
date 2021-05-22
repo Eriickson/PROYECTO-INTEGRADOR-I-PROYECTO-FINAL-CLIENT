@@ -46,7 +46,7 @@ export const LoginTemplate: React.FC = () => {
               }
             }}
           />
-          <div className="flex items-center my-4">
+          {/* <div className="flex items-center my-4">
             <hr className="flex-1" />
             <p className="mx-2 text-xs leading-normal text-center text-sec-text">
               O Inicia con
@@ -56,7 +56,7 @@ export const LoginTemplate: React.FC = () => {
           <div className="flex justify-evenly">
             <GoogleButton label={query.type === "signup" ? "Registrate con Google" : undefined} />
             <FacebookButton label={query.type === "signup" ? "Registrate con Facebook" : undefined} />
-          </div>
+          </div> */}
         </div>
       </div>
       <Modal notCloseModalZone state={modalState} setState={setModalState} centerContent>
