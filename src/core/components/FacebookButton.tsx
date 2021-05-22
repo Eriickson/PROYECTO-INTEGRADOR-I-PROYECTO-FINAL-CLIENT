@@ -19,16 +19,16 @@ export const FacebookButton: React.FC<FacebookButtonProps> = ({ label }) => {
   return (
     <div>
       <button
-        className="flex items-center w-full py-2 pl-2 duration-150 hover:opacity-75"
+        className="flex items-center p-1.5 duration-150 hover:opacity-75"
         style={{ backgroundColor: "#395693" }}
         onClick={() => {
           signIn(providers?.facebook.id);
         }}
       >
-        <div className="mr-3 bg-white rounded-md">
+        <div className="bg-white rounded-md">
           <FacebookIcon />
         </div>{" "}
-        <span className="ml-6 text-sm text-white">{label || "Continua con Facebook"}</span>
+        {/* <span className="ml-6 text-sm text-white">{label || "Continua con Facebook"}</span> */}
       </button>
     </div>
   );

@@ -34,7 +34,7 @@ const schema = yup.object().shape({
     .required("Contraseña obligatoria")
     .min(8, "Mínimo 8 caracteres")
     .max(25, "Máximo 25 caracteres"),
-  remember: yup.boolean(),
+  // remember: yup.boolean(),
 });
 
 export const FormSignin: React.FC<FromSigninProps> = ({ onSubmit }) => {
@@ -92,11 +92,11 @@ export const FormSignin: React.FC<FromSigninProps> = ({ onSubmit }) => {
           <ErrorComponent name="password" error={errors} />
         </div>
       </div>
-      <div className="flex justify-between mb-6">
-        <label htmlFor="recordarme" className="text-sm cursor-pointer select-none">
+      <div className="flex justify-end mb-6">
+        {/* <label htmlFor="recordarme" className="text-sm cursor-pointer select-none">
           <input id="recordarme" name="remember" type="checkbox" className="mr-1 transform scale-75" ref={register} />
           Recordarme
-        </label>
+        </label> */}
         <Link href="/reset-password">
           <a className="text-sm font-medium duration-200 cursor-pointer text-sec-text hover:underline hover:text-warning-500">
             Olvidaste tu contraseña?

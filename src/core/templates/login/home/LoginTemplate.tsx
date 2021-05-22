@@ -13,7 +13,6 @@ import { useSelector, useActions } from "@/store/hooks";
 // My Components
 import { Card, FacebookButton, GoogleButton, Modal } from "@/components";
 import { LoginLayout } from "@/layouts";
-import { EmailIcon } from "src/assets";
 import { FormSignin } from "../../signin/home/FormSignin";
 
 export const LoginTemplate: React.FC = () => {
@@ -21,13 +20,11 @@ export const LoginTemplate: React.FC = () => {
   const { csrfToken } = useSelector(({ auth }) => auth);
   const { query } = useRouter();
   const [modalState, setModalState] = useState<boolean>(query.signup === "true");
-  const [signinEmail, setSigninEmail] = useState(false);
 
   return (
     <LoginLayout BottomComponent={query.type === "signup" ? SignIn : SignUp}>
       <div className="w-full border-t-2 border-pri-500">
         <div className="p-5 bg-white border border-gray-100 shadow md:p-10">
-          {/* <h1 className="mb-2 text-2xl text-center">{query.type === "signup" ? "Regístrate" : "Inicia Sesión"}</h1> */}
           <h1 className="mb-2 text-2xl text-center">Ingresa a tu cuenta</h1>
           <div className="flex items-center mb-6">
             <hr className="flex-1" />
@@ -36,37 +33,30 @@ export const LoginTemplate: React.FC = () => {
             </p>
             <hr className="flex-1" />
           </div>
-
-          {signinEmail ? (
-            <FormSignin
-              onSubmit={async credentials => {
-                try {
-                  await axios.post("http://localhost:8080/api/auth/callback/credentials", {
-                    ...credentials,
-                    csrfToken,
-                  });
-                  Router.reload();
-                } catch (err) {
-                  setGeneralError(true);
-                }
-              }}
-            />
-          ) : (
-            <div className="space-y-2">
-              <GoogleButton label={query.type === "signup" ? "Registrate con Google" : undefined} />
-              <FacebookButton label={query.type === "signup" ? "Registrate con Facebook" : undefined} />
-              <button
-                className="flex items-center w-full py-1.5 pl-2.5 text-white bg-red-500"
-                onClick={() => setSigninEmail(true)}
-                type="button"
-              >
-                <span className="mr-10">
-                  <EmailIcon />
-                </span>{" "}
-                <p className="py-2 text-sm font-medium">Ingresa con Email</p>
-              </button>
-            </div>
-          )}
+          <FormSignin
+            onSubmit={async credentials => {
+              try {
+                await axios.post("http://localhost:8080/api/auth/callback/credentials", {
+                  ...credentials,
+                  csrfToken,
+                });
+                Router.reload();
+              } catch (err) {
+                setGeneralError(true);
+              }
+            }}
+          />
+          <div className="flex items-center my-4">
+            <hr className="flex-1" />
+            <p className="mx-2 text-xs leading-normal text-center text-sec-text">
+              O Inicia con
+            </p>
+            <hr className="flex-1" />
+          </div>
+          <div className="flex justify-evenly">
+            <GoogleButton label={query.type === "signup" ? "Registrate con Google" : undefined} />
+            <FacebookButton label={query.type === "signup" ? "Registrate con Facebook" : undefined} />
+          </div>
         </div>
       </div>
       <Modal notCloseModalZone state={modalState} setState={setModalState} centerContent>
