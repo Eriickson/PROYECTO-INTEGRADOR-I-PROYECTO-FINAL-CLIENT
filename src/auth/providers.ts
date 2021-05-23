@@ -27,22 +27,26 @@ export const providers = [
       username: { label: "Username", type: "text", placeholder: "jsmith" },
       password: { label: "Password", type: "password" },
     },
-    async authorize(credentials) {
-      try {
-        const { signin } = await graphqlClient<ISigninPayload>({
-          query: SIGNIN_Q,
-          variables: { identifier: credentials.identifier, password: credentials.password },
-        });
-        return {
-          email: signin.email,
-          image: signin.picture,
-          name: signin.name,
-          userId: signin.userId,
-          provider: "credentials",
-        };
-      } catch (err) {
-        return null;
-      }
+    async authorize(credentials: { identifier: string }) {
+      const errorMessage = "Correo electrónico o contraseña incorrectos";
+
+      throw `/login?error=${errorMessage}&identifier=${credentials.identifier}`;
+
+      // try {
+      //   const { signin } = await graphqlClient<ISigninPayload>({
+      //     query: SIGNIN_Q,
+      //     variables: { identifier: credentials.identifier, password: credentials.password },
+      //   });
+      //   return {
+      //     email: signin.email,
+      //     image: signin.picture,
+      //     name: signin.name,
+      //     userId: signin.userId,
+      //     provider: "credentials",
+      //   };
+      // } catch (err) {
+      //   return null;
+      // }
     },
   }),
 ];

@@ -1,54 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Next
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 // Packages
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+
+// Redux
+import { useActions } from "@/store/hooks";
+
+// My Elements
+import { FormSignInResolver, IFormSignInOnSubmit } from "@/validations";
 
 // My Components
 import { ErrorComponent } from "src/core/components";
-
-// Types and Interfaces
-export interface ISignin {
-  identifier: string;
-  password: string;
-  remember: boolean;
-}
+import { useSelector } from "@/store/hooks";
 
 interface FromSigninProps {
-  onSubmit: (values: ISignin) => void;
+  onSubmit: (values: IFormSignInOnSubmit) => void;
 }
 
-// Variables and Constants
-const schema = yup.object().shape({
-  identifier: yup
-    .string()
-    .required("Identificador obligatorio")
-    .min(6, "Mínimo 6 caracteres")
-    .max(50, "Máximo 50 caracteres"),
-  password: yup
-    .string()
-    .required("Contraseña obligatoria")
-    .min(8, "Mínimo 8 caracteres")
-    .max(25, "Máximo 25 caracteres"),
-  // remember: yup.boolean(),
-});
-
 export const FormSignin: React.FC<FromSigninProps> = ({ onSubmit }) => {
+  const { csrfToken } = useSelector(({ auth }) => auth);
+  const { setAlertBanner } = useActions();
+  const router = useRouter();
   const {
-    handleSubmit,
     register,
+    handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  } = useForm({ resolver: FormSignInResolver });
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
+  useEffect(() => {
+    document.getElementById("identifier")?.focus();
+    if(router.query.error) setAlertBanner({ isActive: true, message: String(router.query.error), type: "DANGER" });
+    
+  }, []);
+
   return (
-    <form id="signinForm" onSubmit={handleSubmit(onSubmit)}>
+    <form method="post" action="/api/auth/callback/credentials">
+      <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
       <div className="mb-1">
         <div className="mb-2">
           <div className="flex items-center justify-between mb-1 text-xs">
@@ -63,6 +55,9 @@ export const FormSignin: React.FC<FromSigninProps> = ({ onSubmit }) => {
             id="identifier"
             className={`w-full form-control ${errors.identifier && "danger"}`}
             placeholder="Correo o nombre de usuario"
+            defaultValue={router.query.identifier}
+            minLength={6}
+            required
             {...register("identifier")}
           />
           <ErrorComponent name="identifier" error={errors} />
@@ -88,13 +83,15 @@ export const FormSignin: React.FC<FromSigninProps> = ({ onSubmit }) => {
             className={`w-full form-control ${errors.password && "danger"}`}
             type={showPassword ? "text" : "password"}
             placeholder="Contraseña"
+            minLength={8}
+            required
             autoComplete="on"
             {...register("password")}
           />
           <ErrorComponent name="password" error={errors} />
         </div>
       </div>
-      <div className="flex justify-end mb-6">
+      <div className="flex justify-end mb-2">
         {/* <label htmlFor="recordarme" className="text-sm cursor-pointer select-none">
           <input id="recordarme" name="remember" type="checkbox" className="mr-1 transform scale-75" ref={register} />
           Recordarme

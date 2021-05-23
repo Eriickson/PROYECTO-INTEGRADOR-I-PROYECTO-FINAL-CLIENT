@@ -47,8 +47,8 @@ export const LoginLayout: React.FC<LoginLayoutProps> = ({ children, BottomCompon
           <TopAlertBanner />
         </div>
         <div className="container">
-          <div className="max-w-sm px-1 mx-auto">{children}</div>
-          <div className="mt-5 text-center">{BottomComponent && <BottomComponent />}</div>
+          <div className="px-1 mx-auto">{children}</div>
+          <div className="mt-2 text-center">{BottomComponent && <BottomComponent />}</div>
         </div>
         <Footer />
       </div>
