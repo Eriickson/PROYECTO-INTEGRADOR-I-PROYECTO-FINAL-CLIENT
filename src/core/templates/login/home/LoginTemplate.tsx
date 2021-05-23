@@ -1,87 +1,94 @@
 import React, { useState } from "react";
 
-// NextJS
-import Link from "next/link";
-import Router from "next/router";
-
-// Packages
-import axios from "axios";
-
-// Redux
-import { useSelector, useActions } from "@/store/hooks";
-
 // My Components
-import { Card, FacebookButton, GoogleButton, Modal } from "@/components";
+import { Card, FacebookButton, GoogleButton } from "@/components";
 import { LoginLayout } from "@/layouts";
-import { FormSignin } from "../../signin/home/FormSignin";
+import { SignUpSection } from "./sections/signup/SignupSection";
+import { SignInSection } from "./sections/signIn/SignInSection";
+import { EmailSentSection } from "./sections/emailSent/EmailSentSection";
+
+type ViewCurrentType = "SIGNIN" | "SIGNUP" | "EMAIL-SENT";
 
 export const LoginTemplate: React.FC = () => {
-  const { setGeneralError } = useActions();
-  const { csrfToken } = useSelector(({ auth }) => auth);
-  const [modalState, setModalState] = useState<boolean>(false);
+  const [viewCurrent, setViewCurrent] = useState<ViewCurrentType>(
+    typeof window === "undefined" ? "SIGNUP" : (String(sessionStorage.getItem("viewLogin")) as ViewCurrentType),
+  );
+
+  const title: Record<ViewCurrentType, Record<string, string>> = {
+    "EMAIL-SENT": {
+      title: "Correo enviado",
+      subtitle: "",
+      footerText: "",
+      footerButtonText: "",
+    },
+    SIGNIN: {
+      title: "Bienvenido de nuevo",
+      subtitle: "Selecciona unos de los métodos para ingresar a Automarket RD",
+      footerText: "Es la primera vez que usas automarket RD?",
+      footerButtonText: "Crea una cuenta",
+    },
+    SIGNUP: {
+      title: "Crea tu cuenta",
+      subtitle: "Únete a la mejor página de ventas de vehículos",
+      footerText: "Ya tienes una cuenta de automarket RD?",
+      footerButtonText: "Inicia Sesión",
+    },
+  };
+
+  function SelectSession() {
+    switch (viewCurrent) {
+      case "SIGNIN":
+        return <SignInSection />;
+      case "SIGNUP":
+        return <SignUpSection />;
+      case "EMAIL-SENT":
+        return <EmailSentSection />;
+    }
+  }
 
   return (
-    <LoginLayout>
-      <div className="flex-1">
-        <Card notBorderTop>
-          <div className="w-full max-w-sm mx-auto my-14">
-            <h1 className="text-2xl text-center">Bienvenido de nuevo</h1>
-            <div className="flex items-center mb-6">
-              <hr className="flex-1" />
-              <p className="mx-2 text-xs leading-normal text-center text-sec-text">
-                Selecciona unos de los métodos para ingresar a Automarket RD
-              </p>
-              <hr className="flex-1" />
+    <>
+      <LoginLayout>
+        <div className="flex-1">
+          <Card notBorderTop>
+            <div className="w-full max-w-sm mx-auto my-14">
+              <div>
+                <h1 className="text-2xl text-center">{title[viewCurrent].title}</h1>
+                <div className="flex items-center mb-6">
+                  <hr className="flex-1" />
+                  <p className="mx-2 text-xs leading-normal text-center text-sec-text">{title[viewCurrent].subtitle}</p>
+                  <hr className="flex-1" />
+                </div>
+              </div>
+              <SelectSession />
+              <div className="flex items-center my-4">
+                <hr className="flex-1" />
+                <p className="mx-2 text-xs leading-normal text-center text-sec-text">O</p>
+                <hr className="flex-1" />
+              </div>
+              <div className="mb-5">
+                <div className="mb-3 space-y-2">
+                  <GoogleButton />
+                  <FacebookButton />
+                </div>
+              </div>
+              <div>
+                <div className="flex flex-col items-center">
+                  <p className="text-sm font-light text-gray-500 mb-1.5">{title[viewCurrent].footerText}</p>
+                  <button
+                    className="font-semibold text-pri-500"
+                    onClick={() => {
+                      setViewCurrent(view => (view === "SIGNIN" ? "SIGNUP" : "SIGNIN"));
+                    }}
+                  >
+                    {title[viewCurrent].footerButtonText}
+                  </button>
+                </div>
+              </div>
             </div>
-            <FormSignin
-              onSubmit={async credentials => {
-                try {
-                  const { data } = await axios.post("http://localhost:8080/api/auth/callback/credentials", {
-                    ...credentials,
-                    csrfToken,
-                  });
-                  const errorMessage = data.substring(data.lastIndexOf("start@@@") + 9, data.lastIndexOf("end@@@"));
-                  console.log(errorMessage);
-                  console.log(data);
-
-                  // Router.reload();
-                } catch (err) {
-                  setGeneralError(true);
-                }
-              }}
-            />
-            <div className="flex items-center my-4">
-              <hr className="flex-1" />
-              <p className="mx-2 text-xs leading-normal text-center text-sec-text">O</p>
-              <hr className="flex-1" />
-            </div>
-            <div className="mb-3 space-y-2">
-              <GoogleButton />
-              <FacebookButton />
-            </div>
-            <div className="flex flex-col items-center">
-              <p className="text-sm font-light text-gray-500 mb-1.5">Es la primera vez que usas automarket RD?</p>
-              <button>Crea una cuenta</button>
-            </div>
-          </div>
-        </Card>
-      </div>
-      <Modal notCloseModalZone state={modalState} setState={setModalState} centerContent>
-        <div className="w-full max-w-xl mx-auto">
-          <Card>
-            <h3 className="text-2xl font-semibold text-center">Completa tu perfil</h3>
-            <p className="w-4/5 mx-auto mb-8 text-sm text-center">
-              Antes de contiunar deberás completar las informaciones necesarias para tener una cuenta de{" "}
-              <strong>automarket RD</strong>
-            </p>
-            {/* <div className="flex items-center">
-              <Link href={{ pathname: "/signup/register", query: { token: query.token } }}>
-                <a className="mx-auto btn pri">Completar perfil</a>
-              </Link>
-            </div> */}
           </Card>
         </div>
-      </Modal>
-    </LoginLayout>
+      </LoginLayout>
+    </>
   );
 };

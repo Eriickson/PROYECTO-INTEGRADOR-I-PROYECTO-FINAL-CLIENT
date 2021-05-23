@@ -9,7 +9,7 @@ import { useActions } from "@/store/hooks";
 
 // My Components
 import { LoginLayout } from "@/layouts";
-import { FormSignin } from "./FormSignin";
+import { FormSignin } from "../../login/home/sections/signIn/FormSignin";
 
 import { FacebookButton, GoogleButton, ScreenLoader } from "@/components";
 import { AnimatePresence, motion } from "framer-motion";

@@ -38,26 +38,21 @@ export const FormSignin: React.FC<FromSigninProps> = ({ onSubmit }) => {
   }, []);
 
   return (
-    // <form method="post" action="/api/auth/callback/credentials">
     <form onSubmit={handleSubmit(onSubmit)}>
       <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
       <div className="mb-1">
         <div className="mb-2">
-          <div className="flex items-center justify-between mb-1 text-xs">
-            <div className="ml-1">
-              <label htmlFor="identifier">
-                <b className="text-gray-600">Correo o nombre de usuario</b>
-              </label>
-              <b className="text-danger-500 font-roboto">*</b>
-            </div>
+          <div className="ml-1 text-xs">
+            <label htmlFor="identifier">
+              <b className="text-gray-600">Correo o nombre de usuario</b>
+            </label>
+            <b className="text-danger-500 font-roboto">*</b>
           </div>
           <input
             id="identifier"
             className={`w-full form-control ${errors.identifier && "danger"}`}
             placeholder="Correo o nombre de usuario"
             defaultValue={router.query.identifier}
-            minLength={6}
-            required
             {...register("identifier")}
           />
           <ErrorComponent name="identifier" error={errors} />
@@ -83,8 +78,6 @@ export const FormSignin: React.FC<FromSigninProps> = ({ onSubmit }) => {
             className={`w-full form-control ${errors.password && "danger"}`}
             type={showPassword ? "text" : "password"}
             placeholder="Contraseña"
-            minLength={8}
-            required
             autoComplete="on"
             {...register("password")}
           />

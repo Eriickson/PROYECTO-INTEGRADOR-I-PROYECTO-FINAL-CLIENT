@@ -60,10 +60,22 @@ export const MainHeaderComponent: React.FC = () => {
                   </div>
                 ) : (
                   <div className="flex items-center">
-                    <button className="mr-0 md:mr-2 btn pri" onClick={() => signIn()}>
+                    <button
+                      className="mr-0 md:mr-2 btn pri"
+                      onClick={() => {
+                        sessionStorage.setItem("viewLogin", "SIGNUP");
+                        signIn();
+                      }}
+                    >
                       Únete
                     </button>
-                    <button className="hidden btn pri outline md:flex" onClick={() => signIn()}>
+                    <button
+                      className="hidden btn pri outline md:flex"
+                      onClick={() => {
+                        sessionStorage.setItem("viewLogin", "SIGNIN");
+                        signIn();
+                      }}
+                    >
                       Iniciar Sesión
                     </button>
                   </div>
