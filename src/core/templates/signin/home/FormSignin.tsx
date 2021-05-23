@@ -34,12 +34,12 @@ export const FormSignin: React.FC<FromSigninProps> = ({ onSubmit }) => {
 
   useEffect(() => {
     document.getElementById("identifier")?.focus();
-    if(router.query.error) setAlertBanner({ isActive: true, message: String(router.query.error), type: "DANGER" });
-    
+    if (router.query.error) setAlertBanner({ isActive: true, message: String(router.query.error), type: "DANGER" });
   }, []);
 
   return (
-    <form method="post" action="/api/auth/callback/credentials">
+    // <form method="post" action="/api/auth/callback/credentials">
+    <form onSubmit={handleSubmit(onSubmit)}>
       <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
       <div className="mb-1">
         <div className="mb-2">

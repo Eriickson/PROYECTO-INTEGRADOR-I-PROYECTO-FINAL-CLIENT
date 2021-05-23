@@ -23,7 +23,7 @@ export const LoginTemplate: React.FC = () => {
   return (
     <LoginLayout>
       <div className="flex-1">
-        <Card notBorderTop >
+        <Card notBorderTop>
           <div className="w-full max-w-sm mx-auto my-14">
             <h1 className="text-2xl text-center">Bienvenido de nuevo</h1>
             <div className="flex items-center mb-6">
@@ -35,14 +35,16 @@ export const LoginTemplate: React.FC = () => {
             </div>
             <FormSignin
               onSubmit={async credentials => {
-                console.log(credentials);
-
                 try {
-                  await axios.post("http://localhost:8080/api/auth/callback/credentials", {
+                  const { data } = await axios.post("http://localhost:8080/api/auth/callback/credentials", {
                     ...credentials,
                     csrfToken,
                   });
-                  Router.reload();
+                  const errorMessage = data.substring(data.lastIndexOf("start@@@") + 9, data.lastIndexOf("end@@@"));
+                  console.log(errorMessage);
+                  console.log(data);
+
+                  // Router.reload();
                 } catch (err) {
                   setGeneralError(true);
                 }

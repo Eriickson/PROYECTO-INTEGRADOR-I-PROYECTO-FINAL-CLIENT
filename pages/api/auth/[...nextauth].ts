@@ -8,6 +8,7 @@ export default NextAuth({
   providers,
   pages: {
     signIn: "/login",
+    error: "/error",
   },
   jwt: {
     secret: config.tokens.tokenNextAuth,

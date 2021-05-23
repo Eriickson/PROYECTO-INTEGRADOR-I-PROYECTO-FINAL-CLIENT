@@ -46,7 +46,10 @@ export const Select: React.FC<SelectProps> = ({
   onChange,
 }) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
-  const { errors, control } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <div
@@ -88,7 +91,7 @@ export const Select: React.FC<SelectProps> = ({
         name={name}
         control={control}
         defaultValue={defaultValue}
-        render={({ value, onChange: onChangeInternal, ref }) => {
+        render={({ field: { value, onChange: onChangeInternal, ref } }) => {
           return (
             <div>
               <ReactSelect

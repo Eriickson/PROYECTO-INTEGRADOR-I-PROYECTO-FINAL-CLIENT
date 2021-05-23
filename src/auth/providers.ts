@@ -28,8 +28,13 @@ export const providers = [
       password: { label: "Password", type: "password" },
     },
     async authorize(credentials: { identifier: string }) {
-      const errorMessage = "Correo electrónico o contraseña incorrectos";
+      const errorMessage = "start@@@ Las credenciales son incorrectas aqui end@@@";
 
+      return {
+        email: "erickson01d@gmail.com",
+        image: "imagen aquí",
+        name: "Erickson Manuel Holguin",
+      };
       throw `/login?error=${errorMessage}&identifier=${credentials.identifier}`;
 
       // try {
